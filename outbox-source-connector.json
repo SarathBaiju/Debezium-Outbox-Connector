@@ -1,0 +1,18 @@
+{
+  "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+  "name": "test1",
+  "tasks.max": "1",
+  "plugin.name": "pgoutput",
+  "database.hostname": "host.docker.internal",
+  "database.user": "postgres",
+  "database.password": "postgres",
+  "database.dbname": "outbox_db",
+  "database.server.name": "dbserver1",
+  "database.port": "5432",
+  "schema.whitelist": "public",
+  "table.whitelist": "public.outbox",
+  "transforms": "outbox",
+  "transforms.outbox.type": "io.debezium.transforms.outbox.EventRouter",
+  "tombstones.on.delete": "false",
+  "transforms.outbox.route.topic.replacement": "${routedByValue}.events"
+}
